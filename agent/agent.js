@@ -1,6 +1,6 @@
 import Http from "http";
 import debug from "debug";
-import { randomUUID } from "crypto";
+import { v1 } from "uuid";
 
 const log = debug("agent:runner");
 
@@ -15,7 +15,7 @@ function start(db) {
     const customer = db.find(
       (customer) => customer.id === parseInt(customerId)
     );
-    const data = { customerId, ...customer, requestId: randomUUID() };
+    const data = { customerId, ...customer, requestId: v1() };
 
     res.setHeader("x-request-id", data.requestId);
     req.user = data;
