@@ -1,3 +1,8 @@
+process.report.reportOnUncaughtException = true;
+process.report.reportOnFatalError = true;
+process.report.reportOnSignal = true;
+process.report.directory = "./reports";
+
 import Http from "http";
 import debug from "debug";
 import { v1 } from "uuid";
