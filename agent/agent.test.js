@@ -1,9 +1,12 @@
 import debug from "debug";
 const log = debug("agent:test");
 
-import { Server } from "http";
 import assert from "assert";
 const tracker = new assert.CallTracker();
+
+import { Server } from "http";
+import { readdir } from "fs/promises";
+import { resolve } from "path";
 
 import { start as InjectMiddleware } from "./agent.js";
 
@@ -43,6 +46,24 @@ const serverInstance = new Server();
 
   assert.ok(request.user.requestId);
   assert.deepEqual(request.user.name, user.name);
+}
+
+{
+  const reportsFolder = `${resolve()}/reports`;
+  const dirBefore = await readdir(reportsFolder);
+
+  const { headers, user, ...requestData } = request;
+  const messageError = "Cannot read property 'x-app-id' of undefined";
+
+  process.on("uncaughtException", async (err) => {
+    if (!!!-err.message.indexOf(messageError)) {
+      return log(err);
+    }
+
+    const dirAfter = await readdir(reportsFolder);
+    assert.notEqual(dirBefore.length, dirAfter.length);
+  });
+  serverInstance.emit(eventName, requestData, response);
 }
 
 process.on("exit", () => tracker.verify());
