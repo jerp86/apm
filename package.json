@@ -1,0 +1,21 @@
+{
+  "name": "apm",
+  "version": "0.0.1",
+  "description": "Project carried out following the article 'Creating an Application Performance Monitor Using Node 14 New and Experimental Features' by Erick Wendel (@ErickWendel)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "apm"
+  ],
+  "author": "José Eduardo Rodrigues Pinto <jerp.dev@gmail.com> (https://www.linkedin.com/in/jerp)",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "debug": "^4.3.4"
+  }
+}
