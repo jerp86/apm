@@ -13,6 +13,7 @@
   "author": "José Eduardo Rodrigues Pinto <jerp.dev@gmail.com> (https://www.linkedin.com/in/jerp)",
   "license": "MIT",
   "devDependencies": {
+    "@types/debug": "^4.1.7",
     "nodemon": "^2.0.20"
   },
   "dependencies": {
